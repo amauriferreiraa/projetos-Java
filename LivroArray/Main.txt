@@ -1,0 +1,28 @@
+package program;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+import product.Livro;
+
+public class Program {
+	public static void main(String[]args) {
+		Scanner sc = new Scanner(System.in);
+		Random  geradorId = new Random();
+		//Random id = geradorId;
+		
+		ArrayList<Livro> adnovolivro = new ArrayList<Livro>();
+		ArrayList<Livro> adnovolivro2 = new ArrayList<Livro>();
+		ArrayList<Livro> livro2 = new ArrayList<Livro>();
+
+		adnovolivro.add(new Livro(3 , 3.5, "sol", "jack"));
+		adnovolivro2.add(new Livro(5 , 3.4, "sl", "j"));
+		livro2.add(new Livro (3, 6.6, "lex", "PETER"));
+
+
+		
+		System.out.println(adnovolivro);
+		System.out.println(livro2);
+	}
+
+}

@@ -1,0 +1,50 @@
+package product;
+
+public class Livro {
+	public int id;
+	public double price;
+	public String autor;
+	public String titulo;
+	
+	public Livro(int id, double price, String autor, String titulo) {
+		this.id = id;
+		this.price = price;
+		this.autor = autor;
+		this.titulo = titulo;
+	}
+	
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public String getAutor() {
+		return autor;
+	}
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
+	
+	public String toString() {
+		return  "id: "+ id +", price: " + price + ", autor: "+ autor + ", titulo: " +titulo;
+	}
+	
+
+}
