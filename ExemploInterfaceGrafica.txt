@@ -1,0 +1,152 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ExemploPreparedStatement {
+public static void main(String[] args) {
+
+try {
+Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/aulapi", "root","");
+
+Statement st = cn.createStatement();
+ResultSet rs = st.executeQuery("SELECT alunoId, alunoNome, alunoTelefone FROM aluno");
+
+while(rs.next()) {
+Aluno novo = new Aluno();
+
+novo.setId(rs.getInt("alunoId"));
+novo.setNome(rs.getString("alunonome"));
+novo.setTelefone(rs.getString("alunosTelefone"));
+System.out.println(novo);
+
+}
+
+
+
+
+
+// PreparedStatement ps = cn.prepareStatement("INSERT INTO aluno (alunoNome, alunoTelefone)" + "VALUES (?,?)");
+//
+// ps.setString(1, "Manuel silva");
+// ps.setString(2, "(11)4002-8922");
+// ps.setString(3,JOptionPaneShowImpuDialog("Amauri, 11999995566"));
+// ps.executeUpdate();
+// JOptionPane.showMessageDialog(null,"Aluno cadastrado com sucesso");
+rs.close();
+st.close();
+cn.close();
+System.out.println("conexao encerrada");
+}catch (SQLException e) {
+System.out.println("Falha ao tentar gravar aluno");
+e.printStackTrace();
+
+}
+
+}
+
+}
+////////////////////////////////////////////
+
+
+public class Aluno {
+private String nome, telefone;
+private int id;
+
+public int getId() {
+return id;
+}
+
+public Aluno(String nome, String telefone) {
+super();
+this.nome = nome;
+this.telefone = telefone;
+
+}
+
+public Aluno() {
+// TODO Auto-generated constructor stub
+}
+
+public String getNome() {
+return nome;
+}
+
+public void setNome(String nome) {
+this.nome = nome;
+}
+
+public String getTelefone() {
+return telefone;
+}
+
+public void setTelefone(String telefone) {
+this.telefone = telefone;
+}
+
+
+
+@Override
+public String toString() {
+return "Aluno [nome=" + nome + ", telefone=" + telefone + ", id=" + id + "]";
+}
+}
+
+///////////////////////////////////////////////
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ConectaBanco {
+private final static String url = "jdbc:mysql://localhost:3306/aulapi";
+
+private final static String username = "root";
+private final static String password = "";
+
+private Connection con;
+private Statement stmt;
+private ResultSet rs;
+
+private String nome = null;
+private String telefone = null;
+
+public static void main(String [] args) {
+ConectaBanco b =new ConectaBanco();
+
+b.openDB();
+b.closeDB();
+}
+public void openDB() {
+try {
+con = DriverManager.getConnection(url, username, password);
+stmt = con.createStatement();
+System.out.println("\nConexão estabelecida com sucesso!\n");
+}catch(SQLException e) {
+System.out.println("\nNão foi possivel estabelecer conexão. " + "\n");
+System.exit(1);
+}
+}
+public void closeDB() {
+try {
+con.close();
+}catch(SQLException e) {
+System.out.println("nNão foi possivel fechar conexão. " + e + "\n");
+System.exit(1);
+}
+}
+public void close() {
+// TODO Auto-generated method stub
+
+}
+public PreparedStatement prepareStatement(String string) {
+// TODO Auto-generated method stub
+return null;
+}
+}
